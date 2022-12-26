@@ -1,7 +1,3 @@
-#include<SDL2/SDL.h>
-#include<SDL2/SDL_image.h>
-#include<iostream>
-
 #include "RenderWindow.h"
 
 RenderWindow::RenderWindow(const char* p_title, int p_w,int p_h)
@@ -39,9 +35,22 @@ void RenderWindow::clear()
     SDL_RenderClear(renderer);
 }
 
-void RenderWindow::render(SDL_Texture* p_tex)
+
+void RenderWindow::render(Entity &p_entity)
 {
-    SDL_RenderCopy(renderer,p_tex,NULL,NULL);
+    SDL_Rect src;//source image
+    src.x=p_entity.getCurrentFrame().x;
+    src.y=p_entity.getCurrentFrame().y;
+    src.w=p_entity.getCurrentFrame().w;
+    src.h=p_entity.getCurrentFrame().h;
+
+    SDL_Rect dst;//destination image, where that image will load can be manipulated by x and y
+    dst.x=p_entity.getX();
+    dst.y=p_entity.getY();
+    dst.w=p_entity.getCurrentFrame().w;
+    dst.h=p_entity.getCurrentFrame().h;
+
+    SDL_RenderCopy(renderer,p_entity.getTex(),&src,&dst);
 }
 
 void RenderWindow::display()

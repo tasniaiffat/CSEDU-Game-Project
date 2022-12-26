@@ -1,10 +1,6 @@
 //from here, i will navigate to other files. This is the dump and I will keep the mainfile for initialization and cleanup only
-#include<SDL2/SDL.h>
-#include<SDL2/SDL_image.h>
-#include<SDL2/SDL_ttf.h>
-#include<iostream>
-
 #include "constants.h"
+
 
 void handleEvent(SDL_Event& event,bool& gameRunning)
 {
@@ -16,13 +12,15 @@ void handleEvent(SDL_Event& event,bool& gameRunning)
 }
 
 
-void gameloop(bool& gameRunning, RenderWindow STW){
+void gameloop(bool& gameRunning, RenderWindow STW){//basically level 1
 
 
-    SDL_Texture* bgTexture = STW.loadTexture("res/images/levelonebackground.png");//i loaded first level here
+    SDL_Texture* bgTexture = STW.loadTexture("res/images/levelonebackground.png");
+
+    Entity background(0,0,bgTexture);
 
     STW.clear();
-    STW.render(bgTexture);
+    STW.render(background);
     STW.display();
 
 }

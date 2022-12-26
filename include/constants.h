@@ -13,6 +13,7 @@
 //My header files
 #include "RenderWindow.h"
 #include "initializations.h"
+#include "Entity.h"
 
 
 #define SCREEN_WIDTH 1402
