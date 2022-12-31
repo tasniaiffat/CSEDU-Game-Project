@@ -2,6 +2,7 @@
 #include<SDL2/SDL_image.h>
 #include<SDL2/SDL_ttf.h>
 #include<iostream>
+#include<vector>
 
 
 #include "RenderWindow.h"//check if i need to render here
@@ -25,8 +26,20 @@ int main(int argc, char *argv[])
 
     SDL_Event event;
 
+    // const float timeStep=0.01f;
+    // float accumulator =0.0f;
+    // float currentTime = utils::timeInSeconds();
+
     while(gameRunning)
-    {
+    {   
+        // int startTick = SDL_GetTicks();
+        
+        // float newTime = utils::timeInSeconds();
+        // float frameTime = newTime - currentTime;
+
+        // currentTime = newTime;
+        // accumulator+= frameTime;
+
         handleEvent(event,gameRunning);//declared in initializations, defined in gameloop
         if(!gameRunning)
             break;

@@ -9,7 +9,7 @@ RenderWindow::RenderWindow(const char* p_title, int p_w,int p_h)
         std::cout << "Window has failed to init. Error: "<< SDL_GetError() << std::endl;
     }
 
-    renderer = SDL_CreateRenderer(STW, -1, SDL_RENDERER_ACCELERATED );
+    renderer = SDL_CreateRenderer(STW, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
 }
 
@@ -36,7 +36,7 @@ void RenderWindow::clear()
 }
 
 
-void RenderWindow::render(Entity &p_entity)
+void RenderWindow::render(Entity &p_entity)//i can render both background and objects with this
 {
     SDL_Rect src;//source image
     src.x=p_entity.getCurrentFrame().x;
@@ -47,8 +47,8 @@ void RenderWindow::render(Entity &p_entity)
     SDL_Rect dst;//destination image, where that image will load can be manipulated by x and y
     dst.x=p_entity.getX();
     dst.y=p_entity.getY();
-    dst.w=p_entity.getCurrentFrame().w;
-    dst.h=p_entity.getCurrentFrame().h;
+    dst.w=p_entity.getW();
+    dst.h=p_entity.getH();
 
     SDL_RenderCopy(renderer,p_entity.getTex(),&src,&dst);
 }
