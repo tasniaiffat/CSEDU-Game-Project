@@ -1,7 +1,7 @@
 #ifndef global
 #define global
 
-#include "all_headers.h"
+#include "headers.h"
 
 // Screen dimension constants
 extern const int SCREEN_WIDTH;

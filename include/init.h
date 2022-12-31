@@ -1,10 +1,11 @@
-#pragma once
-#include<SDL2/SDL.h>
-#include<SDL2/SDL_image.h>
-#include<iostream>
+#ifndef INIT
+#define INIT
 
-//to handle how long the main loop runs
-void handleEvent(SDL_Event& event,bool& gameRunning);
+#include "headers.h"
+// Starts up SDL and creates window
+bool init();
 
-//inside this function, the main flow will occur like loading textures, moving, calling other places etc unless i decide otherwise
-void gameloop(bool& gameRunning,RenderWindow STW);
+//main gameloop
+void gameloop(bool time_counted,Uint32 CURRENT_TIME);
+
+#endif

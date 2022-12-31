@@ -1,7 +1,7 @@
 #ifndef collider_cave
 #define collider_cave
 
-#include "all_headers.h"
+#include "headers.h"
 
 class Collider_Cave 
 {

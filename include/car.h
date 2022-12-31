@@ -1,7 +1,7 @@
 #ifndef CAR
 #define CAR
 
-#include"all_headers.h"
+#include"headers.h"
 
 class Car
 {
