@@ -6,6 +6,7 @@
 #include "collider_cave.h"
 #include "collider_level_one.h"
 #include "collider_level_two.h"
+#include "collision_checker.h"
 #include "init.h"
 #include "loadstages.h"
 #include "mouse.h"

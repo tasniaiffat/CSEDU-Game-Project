@@ -1,5 +1,4 @@
-#ifndef BUTTONS
-#define BUTTONS
+#pragma once
 
 #include "headers.h"
 
@@ -23,5 +22,3 @@ private:
 extern LButton Menu_Buttons[8];
 extern LButton SelectLevel_Buttons[3];
 extern LButton Back_Button;
-
-#endif
