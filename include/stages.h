@@ -1,6 +1,6 @@
 #pragma once
 
-#include "all_headers.h"
+#include "headers.h"
 
 enum stages
 {
