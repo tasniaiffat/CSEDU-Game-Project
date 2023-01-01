@@ -257,4 +257,62 @@ void Sprite::move(Uint32 &score, Uint32 &life)
             }
         }
     }
+
+    //cave collisions
+    for(int i=0;i<3;i++)
+    {
+        if (checkCollision(drawn_rect, LevelCave_Quartz_rect[i]) == 1)
+        // if( ( SpriteQuad.x < 0 ) || ( SpriteQuad.x + sprite_WIDTH > SCREEN_WIDTH ) || SDL_HasIntersection(&SpriteQuad, &obstacle) )
+        {
+            if(sound) Mix_PlayChannel(-1, gSoundTrash, 0);
+            // cout << "vanish" << endl;
+            LevelCave_Quartz_width[i] = 0;
+            LevelCave_Quartz_height[i] = 0;
+
+            score += 5;
+        }
+    }
+
+    for(int i=0;i<3;i++)
+    {
+        if (checkCollision(drawn_rect, LevelCave_GreenCrystal_rect[i]) == 1)
+        // if( ( SpriteQuad.x < 0 ) || ( SpriteQuad.x + sprite_WIDTH > SCREEN_WIDTH ) || SDL_HasIntersection(&SpriteQuad, &obstacle) )
+        {
+            if(sound) Mix_PlayChannel(-1, gSoundTrash, 0);
+            // cout << "vanish" << endl;
+            LevelCave_GreenCrystal_width[i] = 0;
+            LevelCave_GreenCrystal_height[i] = 0;
+
+            score += 5;
+        }
+    }
+
+    for(int i=0;i<3;i++)
+    {
+        if (checkCollision(drawn_rect, LevelCave_PinkCrystal_rect[i]) == 1)
+        // if( ( SpriteQuad.x < 0 ) || ( SpriteQuad.x + sprite_WIDTH > SCREEN_WIDTH ) || SDL_HasIntersection(&SpriteQuad, &obstacle) )
+        {
+            if(sound) Mix_PlayChannel(-1, gSoundTrash, 0);
+            // cout << "vanish" << endl;
+            LevelCave_PinkCrystal_width[i] = 0;
+            LevelCave_PinkCrystal_height[i] = 0;
+
+            score += 5;
+        }
+    }
+
+    for(int i=0;i<2;i++)
+    {
+        if (checkCollision(drawn_rect, LevelCave_Fireball_rect[i]) == 1)
+        // if( ( SpriteQuad.x < 0 ) || ( SpriteQuad.x + sprite_WIDTH > SCREEN_WIDTH ) || SDL_HasIntersection(&SpriteQuad, &obstacle) )
+        {
+            if(sound) Mix_PlayChannel(-1, gSoundTrash, 0);
+            // cout << "vanish" << endl;
+            LevelCave_Fireball_width[i] = 0;
+            LevelCave_Fireball_height[i] = 0;
+
+            if(life>0)
+            life--;
+        }
+    }
 }

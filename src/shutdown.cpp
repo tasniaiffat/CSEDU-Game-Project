@@ -14,6 +14,8 @@ void close()
     gMusicLevelOne = NULL;
     Mix_FreeMusic(gMusicLevelTwo);
     gMusicLevelTwo = NULL;
+    Mix_FreeMusic(gMusicLevelCave);
+    gMusicLevelCave = NULL;
     Mix_FreeChunk(gSoundTrash);
     gSoundTrash = NULL;
     Mix_FreeChunk(gSoundLife);
@@ -38,6 +40,10 @@ void close()
     gBGTexture.free();
     gBGTexture.free();
     gBGTexture.free();
+
+    gBGLevelCave.free();
+    gBGLevelCaveLoading.free();
+    gBGLevelCaveGameOver.free();
 
     gSymbolLifeTexture.free();
     gSymbolScoreTexture.free();
@@ -64,6 +70,10 @@ void close()
     gLevelTwo_TrafficTexture.free();
     gLevelTwo_EnemyCarTexture.free();
     gLevelTwo_PebbleTexture.free();
+    gQuartzTexture.free();
+    gPinkCrystalTexture.free();
+    gGreenCrystalTexture.free();
+    gFireballTexture.free();
 
     // free loaded text textures
     gUpdatedScoreTextureLevelOne.free();

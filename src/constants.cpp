@@ -26,6 +26,9 @@ Uint32 life_levelOne = 10;
 // Current score and life
 Uint32 score_levelTwo = 0;
 Uint32 life_levelTwo = 10;
+// Current score and life
+Uint32 score_levelCave = 0;
+Uint32 life_levelCave = 10;
 int bullet_number = 0;
 int flag_music = 0;
 // level one global variable initialization
@@ -55,6 +58,7 @@ Mix_Music *gMusicMenu = NULL;
 Mix_Music *gMusicScoreboard = NULL;
 Mix_Music *gMusicLevelOne = NULL;
 Mix_Music *gMusicLevelTwo = NULL;
+Mix_Music *gMusicLevelCave = NULL;
 Mix_Chunk *gSoundMouseClick = NULL;
 Mix_Chunk *gSoundTrash = NULL;
 Mix_Chunk *gSoundLife = NULL;
@@ -195,6 +199,38 @@ int LevelTwo_Fuel_pos_y[2] = {60, 700};
 int LevelTwo_Fuel_width[2] = {90, 90};
 int LevelTwo_Fuel_height[2] = {151, 151};
 
+//cave level
+
+//Quartz
+int LevelCave_Quartz_pos_x[3]={600,800,1000};
+int LevelCave_Quartz_pos_y[3]={350,180,200};
+int LevelCave_Quartz_width[3]={42,42,42};//331
+int LevelCave_Quartz_height[3]={94,94,94};//754
+
+//Pink Crystal
+int LevelCave_PinkCrystal_pos_x[3]={2000,2100,2200};
+int LevelCave_PinkCrystal_pos_y[3]={580,480,580};
+int LevelCave_PinkCrystal_width[3]={58,58,58};//289
+int LevelCave_PinkCrystal_height[3]={97,97,97};//483
+
+//Green Crystal
+int LevelCave_GreenCrystal_pos_x[3]={1500,1600,1700};
+int LevelCave_GreenCrystal_pos_y[3]={400,320,400};
+int LevelCave_GreenCrystal_width[3]={55,55,55};//220
+int LevelCave_GreenCrystal_height[3]={77,77,77};//308
+
+//Level cave Hunter
+int LevelCave_Hunter_1_pos_x[1] = {2500};
+int LevelCave_Hunter_1_pos_y[1] = {579};
+int LevelCave_Hunter_1_width[1] = {170};
+int LevelCave_Hunter_1_height[1] = {180};
+
+//Fireball
+int LevelCave_Fireball_pos_x[2]={2600,1600};
+int LevelCave_Fireball_pos_y[2]={579,110};
+int LevelCave_Fireball_width[2]={50,50};//415
+int LevelCave_Fireball_height[2]={47,47};//382
+
 // The velocity of the sprite
 int sprite_VelX, sprite_VelY;
 
@@ -233,6 +269,13 @@ SDL_Rect LevelTwo_Traffic_rect[2];
 SDL_Rect LevelTwo_EnemyCar_rect[3];
 SDL_Rect LevelTwo_Pebble_rect[2];
 SDL_Rect LevelTwo_Fuel_rect[3];
+
+//cave level
+SDL_Rect LevelCave_Quartz_rect[3];
+SDL_Rect LevelCave_PinkCrystal_rect[3];
+SDL_Rect LevelCave_GreenCrystal_rect[3];
+SDL_Rect LevelCave_Hunter_1_rect[1];
+SDL_Rect LevelCave_Fireball_rect[2];
 
 // current sprite clip
 SDL_Rect *currentClip;

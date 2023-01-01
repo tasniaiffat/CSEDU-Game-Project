@@ -2,7 +2,6 @@
 #include "preprocessors.h"
 #include "texture.h"
 
-
 bool loadMediaTitle()
 {
     bool success = true;
@@ -78,12 +77,6 @@ bool loadMediaScoreboard()
         printf("Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError());
         success = false;
     }
-    gMusicScoreboard = Mix_LoadMUS("res/Music/Lily'sThemeScoreBoard.wav");
-    if (gMusicScoreboard == NULL)
-    {
-        printf("Failed to load scoreboard music! SDL_mixer Error: %s\n", Mix_GetError());
-        success = false;
-    }
     return success;
 }
 
@@ -100,7 +93,7 @@ bool loadMediaSelectLevel()
     {
         SelectLevel_Buttons[0].setPosition(483, 296);
         SelectLevel_Buttons[1].setPosition(483, 461);
-        //SelectLevel_Buttons[2].setPosition(483, 626);
+        SelectLevel_Buttons[2].setPosition(483, 626);
     }
     gSoundMouseClick = Mix_LoadWAV("res/Music/Mouse.wav");
     if (gSoundMouseClick == NULL)
@@ -152,6 +145,30 @@ bool loadMediaLEVEL_TWO_GAME_OVER()
     bool success = true;
 
     if (!gBGTexture.loadFromFile("res/Assets/Level_2_gameover.png"))
+    {
+        printf("Failed to load floating platform texture!\n");
+        success = false;
+    }
+    return success;
+}
+
+bool loadMediaLEVEL_CAVE_LOADING()
+{
+    bool success = true;
+
+    if (!gBGLevelCaveLoading.loadFromFile("res/Assets/LevelCave_Loading.png"))
+    {
+        printf("Failed to load floating platform texture!\n");
+        success = false;
+    }
+    return success;
+}
+
+bool loadMediaLEVEL_CAVE_GAME_OVER()
+{
+    bool success = true;
+
+    if (!gBGLevelCaveGameOver.loadFromFile("res/Assets/LevelCave_Game_Over.png"))
     {
         printf("Failed to load floating platform texture!\n");
         success = false;
@@ -539,215 +556,190 @@ bool loadMediaHelp()
     return success;
 }
 
-// bool loadMediaLEVEL_CAVE_LOADING()
-// {
-//     bool success = true;
+bool loadMediaLEVEL_CAVE()//this function should be done, check comments and if ll relevant things of textures are done in case of an error
+{
+    //Loading success flag
+    bool success = true;
 
-//     if (!gBGLevelCaveLoading.loadFromFile("res/Assets/LevelCave_Loading.png"))
-//     {
-//         printf("Failed to load floating platform texture!\n");
-//         success = false;
-//     }
-//     return success;
-// }
+    gFont = TTF_OpenFont("MyFont3.ttf", 25);
+    if (gFont == NULL)
+    {
+        printf("Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError());
+        success = false;
+    }
+    else
+    {
+        // Set text color as black
+        SDL_Color textColor = {255, 255, 255, 255};
 
-// bool loadMediaLEVEL_CAVE_GAME_OVER()
-// {
-//     bool success = true;
+        // Load prompt texture
+        if (!gScore.loadFromRenderedText("Score", textColor))
+        {
+            printf("Unable to render score texture!\n");
+            success = false;
+        }
+        if (!gLife.loadFromRenderedText("Life", textColor))
+        {
+            printf("Unable to render life texture!\n");
+            success = false;
+        }
+        gSoundTrash = Mix_LoadWAV("res/Music/CollectTrash.wav");
+        if (gSoundTrash == NULL)
+        {
+            printf("Failed to load scratch sound effect! SDL_mixer Error: %s\n", Mix_GetError());
+            // success = false;
+        }
+        gSoundShooting = Mix_LoadWAV("res/Music/shooting_Trim.wav");
+        if (gSoundTrash == NULL)
+        {
+            printf("Failed to load scratch sound effect! SDL_mixer Error: %s\n", Mix_GetError());
+            // success = false;
+        }
+        gSoundLife = Mix_LoadWAV("res/Music/Life_collection_Trim.wav");
+        if (gSoundTrash == NULL)
+        {
+            printf("Failed to load scratch sound effect! SDL_mixer Error: %s\n", Mix_GetError());
+            // success = false;
+        }
+        gSoundHit = Mix_LoadWAV("res/Music/Hit.wav");
+        if (gSoundTrash == NULL)
+        {
+            printf("Failed to load scratch sound effect! SDL_mixer Error: %s\n", Mix_GetError());
+            // success = false;
+        }
+    }
 
-//     if (!gBGLevelCaveGameOver.loadFromFile("res/Assets/LevelCave_Game_Over.png"))
-//     {
-//         printf("Failed to load floating platform texture!\n");
-//         success = false;
-//     }
-//     return success;
-// }
+    // Load sprite texture
+    if (!gSpriteTexture.loadFromFile("res/Assets/sprite.png"))
+    {
+        printf("Failed to load sprite texture!\n");
+        success = false;
+    }
+    else
+    {
+        // Set Sprite clips
+        gspriteClip[0].x = 0;
+        gspriteClip[0].y = 0;
+        gspriteClip[0].w = 641;
+        gspriteClip[0].h = 542;
 
-// bool loadMediaLEVEL_CAVE()//this function should be done, check comments and if ll relevant things of textures are done in case of an error
-// {
-//     //Loading success flag
-//     bool success = true;
+        gspriteClip[1].x = 641;
+        gspriteClip[1].y = 0;
+        gspriteClip[1].w = 641;
+        gspriteClip[1].h = 542;
 
-//     gFont = TTF_OpenFont("res/MyFont3.ttf", 25);
-//     if (gFont == NULL)
-//     {
-//         printf("Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError());
-//         success = false;
-//     }
-//     else
-//     {
-//         // Set text color as black
-//         SDL_Color textColor = {255, 255, 255, 255};
+        gspriteClip[2].x = 1282;
+        gspriteClip[2].y = 0;
+        gspriteClip[2].w = 641;
+        gspriteClip[2].h = 542;
 
-//         // Load prompt texture
-//         if (!gScore.loadFromRenderedText("Score", textColor))
-//         {
-//             printf("Unable to render score texture!\n");
-//             success = false;
-//         }
-//         if (!gLife.loadFromRenderedText("Life", textColor))
-//         {
-//             printf("Unable to render life texture!\n");
-//             success = false;
-//         }
-//         gSoundTrash = Mix_LoadWAV("res/Music/CollectTrash.wav");
-//         if (gSoundTrash == NULL)
-//         {
-//             printf("Failed to load scratch sound effect! SDL_mixer Error: %s\n", Mix_GetError());
-//             // success = false;
-//         }
-//         gSoundShooting = Mix_LoadWAV("res/Music/shooting_Trim.wav");
-//         if (gSoundTrash == NULL)
-//         {
-//             printf("Failed to load scratch sound effect! SDL_mixer Error: %s\n", Mix_GetError());
-//             // success = false;
-//         }
-//         gSoundLife = Mix_LoadWAV("res/Music/Life_collection_Trim.wav");
-//         if (gSoundTrash == NULL)
-//         {
-//             printf("Failed to load scratch sound effect! SDL_mixer Error: %s\n", Mix_GetError());
-//             // success = false;
-//         }
-//         gSoundHit = Mix_LoadWAV("res/Music/Hit.wav");
-//         if (gSoundTrash == NULL)
-//         {
-//             printf("Failed to load scratch sound effect! SDL_mixer Error: %s\n", Mix_GetError());
-//             // success = false;
-//         }
-//     }
+        gspriteClip[3].x = 1923;
+        gspriteClip[3].y = 0;
+        gspriteClip[3].w = 641;
+        gspriteClip[3].h = 542;
 
-//     // Load sprite texture
-//     if (!gSpriteTexture.loadFromFile("res/Assets/sprite.png"))
-//     {
-//         printf("Failed to load sprite texture!\n");
-//         success = false;
-//     }
-//     else
-//     {
-//         // Set Sprite clips
-//         gspriteClip[0].x = 0;
-//         gspriteClip[0].y = 0;
-//         gspriteClip[0].w = 641;
-//         gspriteClip[0].h = 542;
+        gspriteClip[4].x = 2564;
+        gspriteClip[4].y = 0;
+        gspriteClip[4].w = 641;
+        gspriteClip[4].h = 542;
 
-//         gspriteClip[1].x = 641;
-//         gspriteClip[1].y = 0;
-//         gspriteClip[1].w = 641;
-//         gspriteClip[1].h = 542;
+        gspriteClip[5].x = 3205;
+        gspriteClip[5].y = 0;
+        gspriteClip[5].w = 641;
+        gspriteClip[5].h = 542;
 
-//         gspriteClip[2].x = 1282;
-//         gspriteClip[2].y = 0;
-//         gspriteClip[2].w = 641;
-//         gspriteClip[2].h = 542;
+        gspriteClip[6].x = 3846;
+        gspriteClip[6].y = 0;
+        gspriteClip[6].w = 641;
+        gspriteClip[6].h = 542;
 
-//         gspriteClip[3].x = 1923;
-//         gspriteClip[3].y = 0;
-//         gspriteClip[3].w = 641;
-//         gspriteClip[3].h = 542;
+        gspriteClip[7].x = 4487;
+        gspriteClip[7].y = 0;
+        gspriteClip[7].w = 641;
+        gspriteClip[7].h = 542;
+    }
 
-//         gspriteClip[4].x = 2564;
-//         gspriteClip[4].y = 0;
-//         gspriteClip[4].w = 641;
-//         gspriteClip[4].h = 542;
+    // Load music
+    gMusicLevelCave = Mix_LoadMUS("res/Music/LevelTwoMusicTrimmed.wav");
+    if (gMusicLevelCave == NULL)
+    {
+        printf("Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError());
+        // success = false;
+    }
 
-//         gspriteClip[5].x = 3205;
-//         gspriteClip[5].y = 0;
-//         gspriteClip[5].w = 641;
-//         gspriteClip[5].h = 542;
+    //load Collider_LevelCave baki
 
-//         gspriteClip[6].x = 3846;
-//         gspriteClip[6].y = 0;
-//         gspriteClip[6].w = 641;
-//         gspriteClip[6].h = 542;
+    // Load background texture
+    if (!gBGLevelCave.loadFromFile("res/Assets/cavebackground.png"))
+    {
+        printf("Failed to load cave background texture!\n");
+        success = false;
+    }
 
-//         gspriteClip[7].x = 4487;
-//         gspriteClip[7].y = 0;
-//         gspriteClip[7].w = 641;
-//         gspriteClip[7].h = 542;
-//     }
+    // load Quartz
+    if (!gQuartzTexture.loadFromFile("res/Assets/quartz.png"))
+    {
+        printf("Failed to load quartz texture!\n");
+        success = false;
+    }
 
-//     // Load music
-//     gMusicLevelCave = Mix_LoadMUS("res/Music/LevelTwoMusicTrimmed.wav");
-//     if (gMusicLevelCave == NULL)
-//     {
-//         printf("Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError());
-//         // success = false;
-//     }
+    // load Pink Crystal
+    if (!gPinkCrystalTexture.loadFromFile("res/Assets/pinkcrystal.png"))
+    {
+        printf("Failed to load pink crystal texture!\n");
+        success = false;
+    }
 
-//     //load Collider_LevelCave baki
+    // load Green Crystal
+    if (!gGreenCrystalTexture.loadFromFile("res/Assets/greencrystal.png"))
+    {
+        printf("Failed to load green crystal texture!\n");
+        success = false;
+    }
 
-//     // Load background texture
-//     if (!gBGLevelCave.loadFromFile("res/Assets/cavebackground.png"))
-//     {
-//         printf("Failed to load cave background texture!\n");
-//         success = false;
-//     }
+    // load Fireball
+    if (!gFireballTexture.loadFromFile("res/Assets/Fireball.png"))
+    {
+        printf("Failed to load Fireball texture!\n");
+        success = false;
+    }
 
-//     // load Quartz
-//     if (!gQuartzTexture.loadFromFile("res/Assets/quartz.png"))
-//     {
-//         printf("Failed to load quartz texture!\n");
-//         success = false;
-//     }
+    //birds of level 1, check if bat possible
+    if (!gFlyingLevelOne_Birds_1Texture.loadFromFile("res/Assets/Flying_Brids_1.png"))
+    {
+        printf("Failed to load LevelOne_Birds_1 texture!\n");
+        success = false;
+    }
 
-//     // load Pink Crystal
-//     if (!gPinkCrystalTexture.loadFromFile("res/Assets/pinkcrystal.png"))
-//     {
-//         printf("Failed to load pink crystal texture!\n");
-//         success = false;
-//     }
+    //bullet
+    if (!gLevelOne_BulletTexture.loadFromFile("res/Assets/LevelOne_Bullet.png"))
+    {
+        printf("Failed to load LevelOne_Bullet texture!\n");
+        success = false;
+    }
 
-//     // load Green Crystal
-//     if (!gGreenCrystalTexture.loadFromFile("res/Assets/greencrystal.png"))
-//     {
-//         printf("Failed to load green crystal texture!\n");
-//         success = false;
-//     }
+    //hunter enemy
+    if (!gLevelCave_Hunter_1Texture.loadFromFile("res/Assets/LevelOne_Hunter.png"))
+    {
+        printf("Failed to load LevelOne_Hunter_1 texture!\n");
+        success = false;
+    }
 
-//     // load Fireball
-//     if (!gFireballTexture.loadFromFile("res/Assets/Fireball.png"))
-//     {
-//         printf("Failed to load Fireball texture!\n");
-//         success = false;
-//     }
+    //did not do tiger, lion, clouds
 
-//     //birds of level 1, check if bat possible
-//     if (!gFlyingLevelOne_Birds_1Texture.loadFromFile("res/Assets/Flying_Brids_1.png"))
-//     {
-//         printf("Failed to load LevelOne_Birds_1 texture!\n");
-//         success = false;
-//     }
+    //lifetexture
+    if (!gLevelOne_LifeTexture.loadFromFile("res/Assets/LevelCave_Life.png"))
+    {
+        printf("Failed to load LevelOne_Hunter_ texture!\n");
+        success = false;
+    }
 
-//     //bullet
-//     if (!gLevelOne_BulletTexture.loadFromFile("res/Assets/LevelOne_Bullet.png"))
-//     {
-//         printf("Failed to load LevelOne_Bullet texture!\n");
-//         success = false;
-//     }
-
-//     //hunter enemy
-//     if (!gLevelCave_Hunter_1Texture.loadFromFile("res/Assets/LevelOne_Hunter.png"))
-//     {
-//         printf("Failed to load LevelOne_Hunter_1 texture!\n");
-//         success = false;
-//     }
-
-//     //did not do tiger, lion, clouds
-
-//     //lifetexture
-//     if (!gLevelOne_LifeTexture.loadFromFile("res/Assets/LevelCave_Life.png"))
-//     {
-//         printf("Failed to load LevelOne_Hunter_ texture!\n");
-//         success = false;
-//     }
-
-//     //shooting sprite
-//     if (!gShootingSpriteTexture.loadFromFile("res/Assets/shooting_sprite.png"))
-//     {
-//         printf("Failed to load shooting_ texture!\n");
-//         success = false;
-//     }
-//     return success;
+    //shooting sprite
+    if (!gShootingSpriteTexture.loadFromFile("res/Assets/shooting_sprite.png"))
+    {
+        printf("Failed to load shooting_ texture!\n");
+        success = false;
+    }
+    return success;
     
-// }
-
+}

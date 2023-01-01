@@ -17,5 +17,8 @@ bool loadMediaLEVEL_TWO_GAME_OVER();
 bool loadMediaLocked();
 bool loadMediaUnlocked();
 bool loadMediaSorry();
+bool loadMediaLEVEL_CAVE();
+bool loadMediaLEVEL_CAVE_LOADING();
+bool loadMediaLEVEL_CAVE_GAME_OVER();
 
 #endif

@@ -32,6 +32,9 @@ extern Uint32 life_levelOne;
 // Current score and life
 extern Uint32 score_levelTwo;
 extern Uint32 life_levelTwo;
+// Current score and life
+extern Uint32 score_levelCave;
+extern Uint32 life_levelCave;
 
 // level one global variable initialization
 extern SDL_Rect drawn_rect;                  // level one
@@ -62,6 +65,7 @@ extern Mix_Music *gMusicMenu;
 extern Mix_Music *gMusicScoreboard;
 extern Mix_Music *gMusicLevelOne;
 extern Mix_Music *gMusicLevelTwo;
+extern Mix_Music *gMusicLevelCave;
 extern Mix_Chunk *gSoundMouseClick;
 extern Mix_Chunk *gSoundTrash;
 extern Mix_Chunk *gSoundLife;

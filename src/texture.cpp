@@ -1,9 +1,19 @@
 #include "headers.h"
 
+
 LTexture gSymbolScoreTexture;
 LTexture gSymbolLifeTexture;
 // image of BGmenupage texture
 LTexture gBGTexture;
+
+// image of BGmenupage texture
+LTexture gBGTitlePageTexture;
+LTexture gBGMenuPageTexture;
+LTexture gBGHelpPageTexture;
+LTexture gBGSelectLevelTexture;
+LTexture gBGNameInputTexture;
+LTexture gBGScoreboardTexture;
+
 // image textures of level one
 LTexture gBGLevelOne;
 LTexture gSpriteTexture;
@@ -44,6 +54,18 @@ LTexture gCarTexture;
 LTexture gLevelTwo_TrafficTexture;
 LTexture gLevelTwo_EnemyCarTexture;
 LTexture gLevelTwo_FuelTexture;
+
+//image textures of cave level
+LTexture gBGLevelCave;
+LTexture gBGLevelCaveLoading;
+LTexture gBGLevelCaveGameOver;
+LTexture gQuartzTexture;
+LTexture gFireballTexture;
+LTexture gPinkCrystalTexture;
+LTexture gGreenCrystalTexture;
+LTexture gLevelCave_Hunter_1Texture;
+LTexture gUpdatedScoreTextureLevelCave;
+LTexture gUpdatedLifeTextureLevelCave;
 
 // function implementation of classes and others
 LTexture::LTexture()
@@ -139,6 +161,12 @@ bool LTexture::loadFromFile(std::string path)
             gBGTexture.mHeight = 878;
             gBGTexture.mWidth = 1402;
             gBGTexture.mHeight = 878;
+            gBGLevelCave.mHeight = 878;
+            gBGLevelCave.mWidth = 1402;
+            gBGLevelCaveLoading.mWidth = 1402;
+            gBGLevelCaveLoading.mHeight = 878;
+            gBGLevelCaveGameOver.mWidth = 1402;
+            gBGLevelCaveGameOver.mHeight = 878;
 
             // objects of level one
             gSpriteTexture.mHeight = 180;
@@ -173,6 +201,9 @@ bool LTexture::loadFromFile(std::string path)
             gLevelOne_Clouds2Texture.mHeight = 100;
             gLevelOne_Clouds3Texture.mWidth = 250;
             gLevelOne_Clouds3Texture.mHeight = 100;
+            gLevelCave_Hunter_1Texture.mWidth = 170;
+            gLevelCave_Hunter_1Texture.mHeight = 180;
+
 
             // 0bjects of level two
             gCarTexture.mHeight = 600;
@@ -512,6 +543,71 @@ void LTexture::render(int x, int y, int check, SDL_Rect *clip, double angle, SDL
             SDL_RenderCopyEx(gRenderer, mTexture, clip, &LevelTwo_Fuel_rect[i], angle, center, flip);
         }
     } 
+
+    else if (check == 27)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            LevelCave_Quartz_rect[i].x = LevelCave_Quartz_pos_x[i];
+            LevelCave_Quartz_rect[i].y = LevelCave_Quartz_pos_y[i];
+            LevelCave_Quartz_rect[i].w = LevelCave_Quartz_width[i];
+            LevelCave_Quartz_rect[i].h = LevelCave_Quartz_height[i];
+
+            SDL_RenderCopyEx(gRenderer, mTexture, clip, &LevelCave_Quartz_rect[i], angle, center, flip);
+        }
+    }
+
+    else if (check == 28)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            LevelCave_PinkCrystal_rect[i].x = LevelCave_PinkCrystal_pos_x[i];
+            LevelCave_PinkCrystal_rect[i].y = LevelCave_PinkCrystal_pos_y[i];
+            LevelCave_PinkCrystal_rect[i].w = LevelCave_PinkCrystal_width[i];
+            LevelCave_PinkCrystal_rect[i].h = LevelCave_PinkCrystal_height[i];
+
+            SDL_RenderCopyEx(gRenderer, mTexture, clip, &LevelCave_PinkCrystal_rect[i], angle, center, flip);
+        }
+    }
+
+    else if (check == 29)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            LevelCave_GreenCrystal_rect[i].x = LevelCave_GreenCrystal_pos_x[i];
+            LevelCave_GreenCrystal_rect[i].y = LevelCave_GreenCrystal_pos_y[i];
+            LevelCave_GreenCrystal_rect[i].w = LevelCave_GreenCrystal_width[i];
+            LevelCave_GreenCrystal_rect[i].h = LevelCave_GreenCrystal_height[i];
+
+            SDL_RenderCopyEx(gRenderer, mTexture, clip, &LevelCave_GreenCrystal_rect[i], angle, center, flip);
+        }
+    }
+
+    else if (check == 30) // if the texture is of Levelcave hunter
+    {
+        for (int i = 0; i < 1; i++)
+        {
+            LevelCave_Hunter_1_rect[i].x = LevelCave_Hunter_1_pos_x[i];
+            LevelCave_Hunter_1_rect[i].y = LevelCave_Hunter_1_pos_y[i];
+            LevelCave_Hunter_1_rect[i].w = LevelCave_Hunter_1_width[i];
+            LevelCave_Hunter_1_rect[i].h = LevelCave_Hunter_1_height[i];
+
+            SDL_RenderCopyEx(gRenderer, mTexture, clip, &LevelCave_Hunter_1_rect[i], angle, center, flip);
+        }
+    }
+
+    else if (check == 31)
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            LevelCave_Fireball_rect[i].x = LevelCave_Fireball_pos_x[i];
+            LevelCave_Fireball_rect[i].y = LevelCave_Fireball_pos_y[i];
+            LevelCave_Fireball_rect[i].w = LevelCave_Fireball_width[i];
+            LevelCave_Fireball_rect[i].h = LevelCave_Fireball_height[i];
+
+            SDL_RenderCopyEx(gRenderer, mTexture, clip, &LevelCave_Fireball_rect[i], angle, center, flip);
+        }
+    }
 }
 
 int LTexture::getWidth()

@@ -1,4 +1,4 @@
-#include "mouse.h"
+#include "headers.h"
 
 // Buttons for different pages
 LButton Menu_Buttons[8];

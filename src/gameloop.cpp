@@ -118,8 +118,10 @@ void gameloop(bool time_counted,Uint32 CURRENT_TIME)
                 level_two_played = 0;
                 score_levelOne = 0;
                 score_levelTwo = 0;
+                score_levelCave =0;
                 life_levelOne = 10;
                 life_levelTwo = 10;
+                life_levelCave =10;
                 if (Mix_PlayingMusic() != 0 and flag_music == 0)
                 {
                     Mix_HaltMusic();
@@ -169,19 +171,7 @@ void gameloop(bool time_counted,Uint32 CURRENT_TIME)
 
             else if (stage == SCOREBOARD)
             {
-                if (Mix_PlayingMusic() != 0 and flag_music_2 == 0)
-                {
-                    Mix_HaltMusic();
-                    flag_music_2 = 1;
-                }
                 loadMediaScoreboard();
-                if (Mix_PlayingMusic() == 0)
-                {
-                    // Play the music
-                    if (music)
-                        Mix_PlayMusic(gMusicScoreboard, -1);
-                }
-
                 SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
                 SDL_RenderClear(gRenderer);
                 // Render background
@@ -190,6 +180,30 @@ void gameloop(bool time_counted,Uint32 CURRENT_TIME)
                 player.output_name();
                 SDL_RenderPresent(gRenderer);
             }
+
+            // else if (stage == SCOREBOARD)
+            // {
+            //     if (Mix_PlayingMusic() != 0 and flag_music_2 == 0)
+            //     {
+            //         Mix_HaltMusic();
+            //         flag_music_2 = 1;
+            //     }
+            //     loadMediaScoreboard();
+            //     if (Mix_PlayingMusic() == 0)
+            //     {
+            //         // Play the music
+            //         if (music)
+            //             Mix_PlayMusic(gMusicScoreboard, -1);
+            //     }
+
+            //     SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+            //     SDL_RenderClear(gRenderer);
+            //     // Render background
+            //     gBGTexture.render(0, 0, 18, 0, SDL_FLIP_NONE);
+            //     player.output_highest_score();
+            //     player.output_name();
+            //     SDL_RenderPresent(gRenderer);
+            // }
 
             while (SDL_PollEvent(&E_MAIN) != 0) // poll event of whole game
             {
@@ -347,6 +361,12 @@ void gameloop(bool time_counted,Uint32 CURRENT_TIME)
                             stage = LEVEL_TWO_LOADING;
                             level_two_played++;
                         }
+                    }
+
+                    else if (SelectLevel_Buttons[2].handleEvent(E_MAIN, SELECT_LEVEL_BUTTON_WIDTH, SELECT_LEVEL_BUTTON_HEIGHT))
+                    {
+                        
+                        stage = LEVEL_CAVE_LOADING;
                     }
                 }
 
@@ -1015,9 +1035,220 @@ void gameloop(bool time_counted,Uint32 CURRENT_TIME)
                         SDL_Delay(10);
                     }
                 } // end of level two
+
+                else if (stage == LEVEL_CAVE_LOADING)
+                {
+                    Mix_HaltMusic();
+                    if (!time_counted)
+                    {
+                        CURRENT_TIME = SDL_GetTicks();
+                        time_counted = true;
+                    }
+
+                    if (SDL_GetTicks() - CURRENT_TIME < 800)
+                    {
+                        loadMediaLEVEL_CAVE_LOADING();
+                        SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+                        SDL_RenderClear(gRenderer);
+
+                        // Render background
+                        gBGLevelCaveLoading.render(0, 0, 0, 0, SDL_FLIP_NONE);
+                        SDL_RenderPresent(gRenderer);
+                    }
+                    else
+                    {
+                        time_counted = false;
+                        stage = LEVEL_CAVE;
+                    }
+                }
+
+                else if (stage == LEVEL_CAVE_GAME_OVER)
+                {
+                    Mix_HaltMusic();
+                    if (!time_counted)
+                    {
+                        CURRENT_TIME = SDL_GetTicks();
+                        time_counted = true;
+                    }
+
+                    if (SDL_GetTicks() - CURRENT_TIME < 1500)
+                    {
+                        loadMediaLEVEL_CAVE_GAME_OVER();
+                        SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+                        SDL_RenderClear(gRenderer);
+
+                        // Render background
+                        gBGLevelCaveGameOver.render(0, 0, 0, 0, SDL_FLIP_NONE);
+                        SDL_RenderPresent(gRenderer);
+                    }
+                    else
+                    {
+                        time_counted = false;
+                        stage = MENU;
+                    }
+                }
+
+                else if(stage == LEVEL_CAVE)
+                {
+                    Mix_HaltMusic();
+                    loadMediaLEVEL_CAVE();
+
+                    if(Mix_PlayingMusic()==0)
+                        if(music)Mix_PlayMusic(gMusicLevelCave,-1);
+ 
+                    //cave level quitter
+                    bool quit_levcave = false;
+
+                    //sprite and spritequad e ki hochhe bujhte hobe
+                    Sprite sprite;
+
+                    drawn_rect.x = SpriteQuad.x + 50;
+                    drawn_rect.y = SpriteQuad.y;
+                    drawn_rect.w = 130;
+                    drawn_rect.h = SpriteQuad.h;
+
+                    // Current animation frame
+                    int frame = 0;
+
+                    //Collider of cave level
+
+                    // The background scrolling offset
+                    int scrollingOffset_bg = 0;
+                    //int scrollingOffset_plat = 0;
+
+                    SDL_Color textColor = {255, 255, 255, 255};
+
+                    // ***In memory text stream, score stuff apatoto level two diye korsi. cholle level three er banabo
+                    // std::stringstream ScoreTextLevelTwo;
+                    // std::stringstream LifeTextLevelTwo;
+                    std::stringstream ScoreTextLevelCave;
+                    std::stringstream LifeTextLevelCave;
+
+                    //While cave level is running
+                    while(!quit_levcave)
+
+                    {   
+                                 
+                        //life_levelCave=10;
+                        while((SDL_PollEvent(&E_MAIN)!=0))
+                        {
+                            if (E_MAIN.type==SDL_QUIT)
+                            {
+                                stage = LEVEL_CAVE_GAME_OVER;
+                                player.save_previous_name_file();
+                                player.save_previous_highest_score_file();
+                                player.save_present_highest_score(player.input_name, score_levelCave);
+                                quit_levcave =true;
+
+                                
+                                // cout << life_levelOne << endl;
+                            }
+                            sprite.handleEvent(E_MAIN);
+                            if(life_levelCave<=0){
+                                stage = LEVEL_CAVE_GAME_OVER;
+                                player.save_previous_name_file();
+                                player.save_previous_highest_score_file();
+                                player.save_present_highest_score(player.input_name, score_levelCave);
+                                quit_levcave =true;
+                            }
+                        }
+                        
+
+                        //scroll platform korinai
+
+                        // Set text to be rendered, egulao level two stuff
+                        ScoreTextLevelCave.str("");
+                        ScoreTextLevelCave << score_levelCave;
+                        LifeTextLevelCave.str("");
+                        LifeTextLevelCave << life_levelCave;
+
+                        // Render text, level two stuff
+                        if (!gUpdatedScoreTextureLevelCave.loadFromRenderedText(ScoreTextLevelCave.str().c_str(), textColor))
+                        {
+                            printf("Unable to render time texture!\n");
+                        }
+                        if (!gUpdatedLifeTextureLevelCave.loadFromRenderedText(LifeTextLevelCave.str().c_str(), textColor))
+                        {
+                            printf("Unable to render time texture!\n");
+                        }
+
+                        // Clear screen
+                        SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+                        SDL_RenderClear(gRenderer);
+
+                        //Render background
+                        gBGLevelCave.render(scrollingOffset_bg, 0, 0, 0, SDL_FLIP_NONE);
+                        gBGLevelCave.render(scrollingOffset_bg+gBGLevelCave.getWidth(), 0, 0, 0, SDL_FLIP_NONE);
+
+                        //running platform korinai
+
+                        // Render current frame, etao bujhinai
+                        currentClip = &gspriteClip[frame / 8];
+                        gSpriteTexture.RenderSprite((SCREEN_WIDTH - currentClip->w) / 2, (SCREEN_HEIGHT - currentClip->h) / 3, currentClip);
+
+                        //Go to next frame
+                        ++frame;
+
+                        // Cycle animation
+                        if (frame / 8 >= WALKING_ANIMATION_FRAMES)
+                        {
+                            frame = 0;
+                        }
+
+                        //render Collider_cave. collider cpp kaj korena, tai manually rendered
+                        gFlyingLevelOne_Birds_1Texture.render(0, 0, 5, 0, SDL_FLIP_NONE);
+                        gLevelOne_BulletTexture.render(0, 0, 6, 0, SDL_FLIP_NONE);
+                        gLevelCave_Hunter_1Texture.render(0, 0, 30, 0, SDL_FLIP_NONE);
+                        gLevelOne_LifeTexture.render(0, 0, 12, 0, SDL_FLIP_NONE);
+                        gQuartzTexture.render(0, 0, 27, 0, SDL_FLIP_NONE);
+                        gPinkCrystalTexture.render(0,0,28,0,SDL_FLIP_NONE);
+                        gGreenCrystalTexture.render(0,0,29,0,SDL_FLIP_NONE);
+                        gFireballTexture.render(0, 0, 31, 0, SDL_FLIP_NONE);
+
+                        sprite.move(score_levelCave, life_levelCave);
+                        if (SpriteQuad.y < base) // so that the sprite doesn't get below the platform
+                        {
+                            SpriteQuad.y += 5;
+                        }
+
+                        for (int bullet_number = 0; bullet_number < 5; bullet_number++)
+                        {
+                            if (LevelOne_Bullet_go[bullet_number] == 1)
+                            {
+                                // cout << "bullet thrown " << bullet_number << endl;
+                                LevelOne_Bullet_pos_x[bullet_number] += 15;
+                                LevelOne_Bullet_rect[bullet_number].x += 15;
+
+                                if (LevelOne_Bullet_pos_x[bullet_number] > 1400)
+                                {
+                                    LevelOne_Bullet_go[bullet_number] = 0;
+                                    LevelOne_Bullet_pos_x[bullet_number] = SpriteQuad.x + SpriteQuad.w;
+                                    LevelOne_Bullet_rect[bullet_number].x = SpriteQuad.x + SpriteQuad.w;
+                                    LevelOne_Bullet_pos_y[bullet_number] = SpriteQuad.y + SpriteQuad.h / 2;
+                                    LevelOne_Bullet_rect[bullet_number].y = SpriteQuad.y + SpriteQuad.h / 2;
+                                }
+                                // LevelOne_Bullet_go[bullet_number] == 1;
+                            }
+                            else if (LevelOne_Bullet_go[bullet_number] == 0)
+                            {
+                                LevelOne_Bullet_pos_x[bullet_number] = SpriteQuad.x + SpriteQuad.w;
+                                LevelOne_Bullet_rect[bullet_number].x = SpriteQuad.x + SpriteQuad.w;
+                                LevelOne_Bullet_pos_y[bullet_number] = SpriteQuad.y + SpriteQuad.h / 2;
+                                LevelOne_Bullet_rect[bullet_number].y = SpriteQuad.y + SpriteQuad.h / 2;
+                                LevelOne_Bullet_width[bullet_number] = 0;
+                                LevelOne_Bullet_height[bullet_number] = 0;
+                            }
+                        }
+                    }
+                }
+            
+
+
         }
     }
 }
+        
+        
     
 
     

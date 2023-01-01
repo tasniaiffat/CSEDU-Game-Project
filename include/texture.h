@@ -49,6 +49,14 @@ private:
     int mHeight;
 };
 
+// image of BGmenupage texture
+extern LTexture gBGTitlePageTexture;
+extern LTexture gBGMenuPageTexture;
+extern LTexture gBGHelpPageTexture;
+extern LTexture gBGSelectLevelTexture; 
+extern LTexture gBGNameInputTexture;
+extern LTexture gBGScoreboardTexture;
+
 
 extern LTexture gSymbolScoreTexture;
 extern LTexture gSymbolLifeTexture;
@@ -92,6 +100,18 @@ extern LTexture gLevelTwo_TrafficTexture;
 extern LTexture gLevelTwo_EnemyCarTexture;
 extern LTexture gLevelTwo_PebbleTexture;
 extern LTexture gLevelTwo_FuelTexture;
+
+//image textures of cavelevel
+extern LTexture gBGLevelCave;
+extern LTexture gBGLevelCaveGameOver;
+extern LTexture gBGLevelCaveLoading;
+extern LTexture gQuartzTexture;
+extern LTexture gPinkCrystalTexture;
+extern LTexture gGreenCrystalTexture;
+extern LTexture gFireballTexture;
+extern LTexture gLevelCave_Hunter_1Texture;
+extern LTexture gUpdatedScoreTextureLevelCave;
+extern LTexture gUpdatedLifeTextureLevelCave;
 
 #endif
 

@@ -1,5 +1,5 @@
-#include "car.h"
-#include "collision_checker.h"
+#include "headers.h"
+
 
 int car_VelX, car_VelY;
 
