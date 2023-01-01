@@ -7,7 +7,8 @@ int flag_music_2 = 0;
 
 void gameloop(bool time_counted,Uint32 CURRENT_TIME)
 {
-   bool closewindow = false;
+    stage= TITLE;
+    bool closewindow = false;
         SDL_Event E_MAIN;
         while (!closewindow)
         {
@@ -118,10 +119,10 @@ void gameloop(bool time_counted,Uint32 CURRENT_TIME)
                 level_two_played = 0;
                 score_levelOne = 0;
                 score_levelTwo = 0;
-                score_levelCave =0;
+                //score_levelCave =0;
                 life_levelOne = 10;
                 life_levelTwo = 10;
-                life_levelCave =10;
+                //life_levelCave =10;
                 if (Mix_PlayingMusic() != 0 and flag_music == 0)
                 {
                     Mix_HaltMusic();
@@ -365,9 +366,10 @@ void gameloop(bool time_counted,Uint32 CURRENT_TIME)
 
                     else if (SelectLevel_Buttons[2].handleEvent(E_MAIN, SELECT_LEVEL_BUTTON_WIDTH, SELECT_LEVEL_BUTTON_HEIGHT))
                     {
-                        
+                        // cout << "enter level " << 3 << endl;
                         stage = LEVEL_CAVE_LOADING;
                     }
+                
                 }
 
                 else if (stage == LEVEL_ONE_LOADING)
@@ -471,7 +473,7 @@ void gameloop(bool time_counted,Uint32 CURRENT_TIME)
                     else
                     {
                         time_counted = false;
-                        stage = MENU;
+                        stage = SELECT_LEVEL;
                     }
                 }
 
@@ -1239,6 +1241,131 @@ void gameloop(bool time_counted,Uint32 CURRENT_TIME)
                                 LevelOne_Bullet_height[bullet_number] = 0;
                             }
                         }
+
+                        // for (int i = 0; i < 4; i++)
+                        // {
+                        //     if (LevelOne_FloatingPlatform_pos_x[i] < -300)
+                        //     {
+                        //         LevelOne_FloatingPlatform_pos_x[i] = LevelOne_FloatingPlatform_rect[i].x = 2100;
+                        //     }
+                        //     LevelOne_FloatingPlatform_pos_x[i] -= 8;
+                        //     LevelOne_FloatingPlatform_rect[i].x -= 8;
+                        // }
+
+                        for (int i = 0; i < 3; i++)
+                        {
+                            if (LevelCave_Quartz_pos_x[i] < -300)
+                            {
+                                LevelCave_Quartz_pos_x[i] = 2100;
+                                LevelCave_Quartz_rect[i].x = 2100;
+                                LevelCave_Quartz_width[i] = 93;
+                                LevelCave_Quartz_height[i] = 124;
+                            }
+                            LevelCave_Quartz_pos_x[i] -= 8;
+                            LevelCave_Quartz_rect[i].x -= 8;
+                        }
+
+                        for (int i = 0; i < 3; i++)
+                        {
+                            if (LevelCave_PinkCrystal_pos_x[i] < -300)
+                            {
+                                LevelCave_PinkCrystal_pos_x[i] = 2100;
+                                LevelCave_PinkCrystal_rect[i].x = 2100;
+                                LevelCave_PinkCrystal_width[i] = 83;
+                                LevelCave_PinkCrystal_height[i] = 111;
+                            }
+                            LevelCave_PinkCrystal_pos_x[i] -= 8;
+                            LevelCave_PinkCrystal_rect[i].x -= 8;
+                        }
+
+                        for (int i = 0; i < 3; i++)
+                        {
+                            if (LevelCave_GreenCrystal_pos_x[i] < -300)
+                            {
+                                LevelCave_GreenCrystal_pos_x[i] = 2100;
+                                LevelCave_GreenCrystal_rect[i].x = 2100;
+                                LevelCave_GreenCrystal_width[i] = 60;
+                                LevelCave_GreenCrystal_height[i] = 60;
+                            }
+                            LevelCave_GreenCrystal_pos_x[i] -= 8;
+                            LevelCave_GreenCrystal_rect[i].x -= 8;
+                        }
+
+                        for (int i = 0; i < 2; i++)
+                        {
+                            if (LevelCave_Fireball_pos_x[i] < -300)
+                            {
+                                LevelCave_Fireball_pos_x[i] = 2100;
+                                LevelCave_Fireball_rect[i].x = 2100;
+                                LevelCave_Fireball_width[i] = 50;
+                                LevelCave_Fireball_height[i] = 47;
+                            }
+                            LevelCave_Fireball_pos_x[i] -= 8;
+                            LevelCave_Fireball_rect[i].x -= 8;
+                        }
+
+                        for (int i = 0; i < 1; i++)
+                        {
+                            if (LevelOne_Birds_1_pos_x[i] > 1500)
+                            {
+                                LevelOne_Birds_1_pos_x[i] = -1500;
+                                LevelOne_Birds_1_rect[i].x = -1500;
+                            }
+                            LevelOne_Birds_1_pos_x[i] += 8;
+                            LevelOne_Birds_1_rect[i].x += 8;
+                        }
+
+                        for (int i = 0; i < 1; i++)
+                        {
+                            if (LevelOne_Life_pos_x[i] < -100)
+                            {
+                                LevelOne_Life_width[i] = 100;
+                                LevelOne_Life_height[i] = 100;
+                                LevelOne_Life_pos_x[i] = 6000;
+                                LevelOne_Life_rect[i].x = 6000;
+                            }
+                            LevelOne_Life_pos_x[i] -= 8;
+                            LevelOne_Life_rect[i].x -= 8;
+                        }
+                        LevelOne_Hunter__drawn_rect.x = LevelCave_Hunter_1_pos_x[0];
+                        LevelOne_Hunter__drawn_rect.y = LevelCave_Hunter_1_pos_y[0];
+                        LevelOne_Hunter__drawn_rect.w = LevelCave_Hunter_1_width[0];
+                        LevelOne_Hunter__drawn_rect.h = LevelCave_Hunter_1_height[0];
+
+                        SDL_SetRenderDrawColor(gRenderer, 0xFF, 0x00, 0x00, 0x00);
+                        // SDL_RenderDrawRect(gRenderer, &LevelOne_Hunter__drawn_rect);
+
+                        for (int i = 0; i < 1; i++)
+                        {
+                            if (LevelCave_Hunter_1_pos_x[i] < -300)
+                            {
+                                LevelCave_Hunter_1_width[i] = 170;
+                                LevelCave_Hunter_1_height[i] = 180;
+                                LevelCave_Hunter_1_pos_x[i] = 2100;
+                                LevelCave_Hunter_1_rect[i].x = 2100;
+                                // LevelOne_Hunter__drawn_rect.x = 3100;
+                            }
+                            LevelCave_Hunter_1_pos_x[i] -= 8;
+                            LevelCave_Hunter_1_rect[i].x -= 8;
+                            // LevelOne_Hunter__drawn_rect.x -= 8;
+                        }
+
+                        ShootingSprite_rect.x = SpriteQuad.x;
+                        ShootingSprite_rect.y = SpriteQuad.y;
+
+                        // gLevelOne_BulletTexture.render(0, 0, 6, 0, SDL_FLIP_NONE);
+                        gShootingSpriteTexture.render(SpriteQuad.x, SpriteQuad.y, 17, 0, SDL_FLIP_NONE);
+
+                        // Render textures
+                        gScore.render(1300, 10, 0, 0, SDL_FLIP_NONE);
+                        gLife.render(1320, 70, 0, 0, SDL_FLIP_NONE);
+                        gUpdatedScoreTextureLevelCave.render(1350, 36, 0, 0, SDL_FLIP_NONE);
+                        gUpdatedLifeTextureLevelCave.render(1350, 100, 0, 0, SDL_FLIP_NONE);
+
+                        SDL_RenderPresent(gRenderer);
+                        SDL_Delay(10);//end of cave level, working with game over
+                    
+
                     }
                 }
             
