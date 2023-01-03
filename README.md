@@ -9,6 +9,8 @@ Developers :
 1. Tasnia Iffat
 2. Meherun Farzana
 
+Download the game and install SDL/SDL2 to play the game.
+
 Command to start the game: make game
 
 Youtube: https://youtu.be/qKhfkv5fLRU 
