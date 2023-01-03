@@ -34,6 +34,7 @@ public:
     // Renders texture at given point
     void render(int x, int y, int check, SDL_Rect *clip = NULL, double angle = 0.0, SDL_Point *center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE);
     void RenderSprite(int x, int y, SDL_Rect *clip);
+    void RenderSpriteCave(int x, int y, SDL_Rect *clip);
     void RenderCar(int x, int y, SDL_Rect *clip);
 
     // Gets image dimensions
@@ -63,6 +64,7 @@ extern LTexture gSymbolLifeTexture;
 extern LTexture gBGTexture;
 extern LTexture gBGLevelOne;
 extern LTexture gSpriteTexture;
+extern LTexture gSpriteCaveTexture;
 extern LTexture gLevelOne_FloatingPlatformTexture;
 extern LTexture gLevelOne_BatteryTexture;
 extern LTexture gRunning_platformTexture;
@@ -71,11 +73,14 @@ extern LTexture gLevelOne_CanTexture;
 extern LTexture gFlyingLevelOne_Birds_1Texture;
 extern LTexture gFlyingLevelOne_Birds_2Texture;
 extern LTexture gShootingSpriteTexture;
+extern LTexture gShootingSpriteCaveTexture;
 extern LTexture gLevelOne_BulletTexture;
+extern LTexture gLevelCave_BulletTexture;
 extern LTexture gLevelOne_Hunter_1Texture;
 extern LTexture gLevelOne_LionTexture;
 extern LTexture gLevelOne_TigerTexture;
 extern LTexture gLevelOne_LifeTexture;
+extern LTexture gLevelCave_LifeTexture;
 extern LTexture gLevelOne_Clouds1Texture;
 extern LTexture gLevelOne_Clouds2Texture;
 extern LTexture gLevelOne_Clouds3Texture;

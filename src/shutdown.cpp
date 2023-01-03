@@ -50,6 +50,7 @@ void close()
 
     // free different objects
     gSpriteTexture.free();
+    gSpriteCaveTexture.free();
     gLevelOne_CanTexture.free();
     gLevelOne_FloatingPlatformTexture.free();
     gLevelOne_BatteryTexture.free();
@@ -59,14 +60,17 @@ void close()
     gLevelOne_Barrier_1Texture.free();
     gLevelOne_Barrier_2Texture.free();
     gLevelOne_BulletTexture.free();
+    gLevelCave_BulletTexture.free();
     gLevelOne_Hunter_1Texture.free();
     gLevelOne_LionTexture.free();
     gLevelOne_TigerTexture.free();
     gLevelOne_LifeTexture.free();
+    gLevelCave_LifeTexture.free();
     gLevelOne_Clouds1Texture.free();
     gLevelOne_Clouds2Texture.free();
     gLevelOne_Clouds3Texture.free();
     gShootingSpriteTexture.free();
+    gShootingSpriteCaveTexture.free();
     gLevelTwo_TrafficTexture.free();
     gLevelTwo_EnemyCarTexture.free();
     gLevelTwo_PebbleTexture.free();
@@ -80,6 +84,8 @@ void close()
     gUpdatedScoreTextureLevelTwo.free();
     gUpdatedLifeTextureLevelOne.free();
     gUpdatedLifeTextureLevelTwo.free();
+    gUpdatedLifeTextureLevelCave.free();
+    gUpdatedLifeTextureLevelCave.free();
     gHighestScoreTexture.free();
     gGreatestNameTexture.free();
     gBGTexture.free();

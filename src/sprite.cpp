@@ -7,6 +7,13 @@ Sprite::Sprite()
     SpriteQuad.y = base;
 }
 
+SpriteCave::SpriteCave()
+{
+    // Initialize the offsets
+    SpriteCaveQuad.x = 100;
+    SpriteCaveQuad.y = base;
+}
+
 void Sprite::handleEvent(SDL_Event &e)
 {
     // If a key was pressed
@@ -258,10 +265,254 @@ void Sprite::move(Uint32 &score, Uint32 &life)
         }
     }
 
+    // //cave collisions
+
+    // for (int i = 0; i < 1; i++)
+    // {
+    //     if (checkCollision(drawn_rect, LevelCave_Life_rect[i]) == 1)
+    //     // if( ( SpriteQuad.x < 0 ) || ( SpriteQuad.x + sprite_WIDTH > SCREEN_WIDTH ) || SDL_HasIntersection(&SpriteQuad, &obstacle) )
+    //     {
+    //         if (sound)
+    //             Mix_PlayChannel(-1, gSoundLife, 0);
+    //         // cout << "vanish" << endl;
+    //         LevelCave_Life_width[i] = 0;
+    //         LevelCave_Life_height[i] = 0;
+    //         LevelCave_Life_pos_x[i] = 6000;
+    //         //SpriteQuad.x = RESET_SPRITE_X;
+    //         // drawn_rect.x = SpriteQuad.x + 50;
+            
+    //         life++;
+    //     }
+    // }
+
+    // for(int i=0;i<3;i++)
+    // {
+    //     if (checkCollision(drawn_rect, LevelCave_Quartz_rect[i]) == 1)
+    //     // if( ( SpriteQuad.x < 0 ) || ( SpriteQuad.x + sprite_WIDTH > SCREEN_WIDTH ) || SDL_HasIntersection(&SpriteQuad, &obstacle) )
+    //     {
+    //         if(sound) Mix_PlayChannel(-1, gSoundTrash, 0);
+    //         // cout << "vanish" << endl;
+    //         LevelCave_Quartz_width[i] = 0;
+    //         LevelCave_Quartz_height[i] = 0;
+
+    //         score += 5;
+    //     }
+    // }
+
+    // for(int i=0;i<3;i++)
+    // {
+    //     if (checkCollision(drawn_rect, LevelCave_GreenCrystal_rect[i]) == 1)
+    //     // if( ( SpriteQuad.x < 0 ) || ( SpriteQuad.x + sprite_WIDTH > SCREEN_WIDTH ) || SDL_HasIntersection(&SpriteQuad, &obstacle) )
+    //     {
+    //         if(sound) Mix_PlayChannel(-1, gSoundTrash, 0);
+    //         // cout << "vanish" << endl;
+    //         LevelCave_GreenCrystal_width[i] = 0;
+    //         LevelCave_GreenCrystal_height[i] = 0;
+
+    //         score += 5;
+    //     }
+    // }
+
+    // for(int i=0;i<3;i++)
+    // {
+    //     if (checkCollision(drawn_rect, LevelCave_PinkCrystal_rect[i]) == 1)
+    //     // if( ( SpriteQuad.x < 0 ) || ( SpriteQuad.x + sprite_WIDTH > SCREEN_WIDTH ) || SDL_HasIntersection(&SpriteQuad, &obstacle) )
+    //     {
+    //         if(sound) Mix_PlayChannel(-1, gSoundTrash, 0);
+    //         // cout << "vanish" << endl;
+    //         LevelCave_PinkCrystal_width[i] = 0;
+    //         LevelCave_PinkCrystal_height[i] = 0;
+
+    //         score += 5;
+    //     }
+    // }
+
+    // for(int i=0;i<2;i++)
+    // {
+    //     if (checkCollision(drawn_rect, LevelCave_Fireball_rect[i]) == 1)
+    //     // if( ( SpriteQuad.x < 0 ) || ( SpriteQuad.x + sprite_WIDTH > SCREEN_WIDTH ) || SDL_HasIntersection(&SpriteQuad, &obstacle) )
+    //     {
+    //         if(sound) Mix_PlayChannel(-1, gSoundTrash, 0);
+    //         // cout << "vanish" << endl;
+    //         LevelCave_Fireball_width[i] = 0;
+    //         LevelCave_Fireball_height[i] = 0;
+
+    //         if(life>0)
+    //         life--;
+    //     }
+    // }
+    // for (int i = 0; i < 1; i++)
+    // {
+    //     if (checkCollision(SpriteCaveQuad, LevelCave_Hunter_1_rect[i]) == 1)
+    //     {
+    //         if (sound)
+    //             Mix_PlayChannel(-1, gSoundHit, 0);
+    //         //SpriteQuad.x = RESET_SPRITE_X;
+    //         //drawn_rect.x = SpriteQuad.x + 50;
+    //         //SpriteQuad.y = drawn_rect.y = RESET_SPRITE_Y;
+
+    //         if (life > 0 )
+    //             life--;
+    //     }
+    // }
+    // for (int i = 0; i < 5; i++)
+    // {
+    //     for (int j = 0; j < 1; j++)
+    //     {
+    //         if (checkCollision(LevelCave_Bullet_rect[i], LevelCave_Hunter_1_rect[j]) == 1)
+    //         {
+    //             if (sound)
+    //                 Mix_PlayChannel(-1, gSoundHit, 0);
+    //             LevelCave_Bullet_go[i] = 0;
+    //             LevelCave_Bullet_width[i] = 0;
+    //             LevelCave_Bullet_height[i] = 0;
+    //             LevelCave_Bullet_pos_x[i] = SpriteQuad.x + SpriteQuad.w / 2;
+    //             LevelCave_Bullet_rect[i].x = SpriteQuad.x + SpriteQuad.w / 2;
+    //             LevelCave_Bullet_pos_y[i] = SpriteQuad.y + SpriteQuad.h / 2;
+    //             LevelCave_Bullet_rect[i].y = SpriteQuad.y + SpriteQuad.h / 2;
+
+    //             LevelCave_Hunter_1_width[j] = 0;
+    //             LevelCave_Hunter_1_height[j] = 0;
+
+    //             score += 10;
+    //         }
+    //     }
+    // }
+}
+
+void SpriteCave::handleEvent(SDL_Event &e)
+{
+    // If a key was pressed
+    if (e.type == SDL_KEYDOWN && e.key.repeat == 0)
+    {
+        // Adjust the velocity
+        switch (e.key.keysym.sym)
+        {
+        case SDLK_UP:
+            spriteCave_VelY -= spriteCave_VELYC;
+            break;
+        case SDLK_LEFT:
+            spriteCave_VelX -= spriteCave_VELXC;
+            break;
+        case SDLK_RIGHT:
+            spriteCave_VelX += spriteCave_VELXC;
+            break;
+        // case SDLK_RETURN:
+        //     if (sound)
+        //         Mix_PlayChannel(-1, gSoundShooting, 0);
+        //     shootingCave(1);
+        //     break;
+        }
+    }
+
+    // If a key was released
+    else if (e.type == SDL_KEYUP && e.key.repeat == 0)
+    {
+        // Adjust the velocity
+        switch (e.key.keysym.sym)
+        {
+        case SDLK_UP:
+            spriteCave_VelY += spriteCave_VELYC;
+            break;
+        case SDLK_LEFT:
+            spriteCave_VelX += spriteCave_VELXC;
+            break;
+        case SDLK_RIGHT:
+            spriteCave_VelX -= spriteCave_VELXC;
+            break;
+        // case SDLK_RETURN:
+        //     shootingCave(0);
+        //     break;
+        }
+    }
+}
+
+void SpriteCave::move(Uint32 &score, Uint32 &life)
+{
+    // cout << SpriteQuad.x << " " << drawn_rect.x << endl;
+    // SpriteQuad.x++;
+    SpriteCaveQuad.x += spriteCave_VelX;
+    drawn_rectCave.x = SpriteCaveQuad.x + 50;
+
+    SpriteCaveQuad.y += spriteCave_VelY;
+    drawn_rectCave.y = SpriteCaveQuad.y;
+
+    if (SpriteCaveQuad.x >= 1200) // so that the sprite doesn't cross the window in the right
+    {
+        SpriteCaveQuad.x -= spriteCave_VelX;
+        drawn_rectCave.x = SpriteCaveQuad.x + 50;
+        SpriteCaveQuad.x--;
+        drawn_rectCave.x = SpriteCaveQuad.x + 50;
+    }
+
+    if (SpriteCaveQuad.x <= 100) // so that the sprite doesn't cross the window in the left
+    {
+        SpriteCaveQuad.x -= spriteCave_VelX;
+        drawn_rectCave.x = SpriteCaveQuad.x + 50;
+    }
+
+    if (SpriteCaveQuad.y <= -200) // so that the sprite doesn't get cross the window from the top
+    {
+        SpriteCaveQuad.y -= spriteCave_VelY;
+        drawn_rectCave.y = SpriteCaveQuad.y;
+    }
+
+    if (SpriteCaveQuad.y < base)
+    {
+        SpriteCaveQuad.y += 10;
+        drawn_rectCave.y = SpriteCaveQuad.y;
+    }
+
+    
+    if (flag == 0)
+    {
+        // cout << "landed" << endl;
+        base = 579;
+    }
+
+    // for (int i = 0; i < 1; i++)
+    // {
+    //     if (checkCollision(drawn_rectCave, LevelOne_Life_rect[i]) == 1)
+    //     // if( ( SpriteQuad.x < 0 ) || ( SpriteQuad.x + sprite_WIDTH > SCREEN_WIDTH ) || SDL_HasIntersection(&SpriteQuad, &obstacle) )
+    //     {
+    //         if (sound)
+    //             Mix_PlayChannel(-1, gSoundLife, 0);
+    //         // cout << "vanish" << endl;
+    //         LevelOne_Life_width[i] = 0;
+    //         LevelOne_Life_height[i] = 0;
+    //         LevelOne_Life_pos_x[i] = 6000;
+    //         //SpriteQuad.x = RESET_SPRITE_X;
+    //         // drawn_rect.x = SpriteQuad.x + 50;
+            
+    //         life++;
+    //     }
+    // }
+    
+    
+
     //cave collisions
+
+    for (int i = 0; i < 1; i++)
+    {
+        if (checkCollision(drawn_rectCave, LevelCave_Life_rect[i]) == 1)
+        // if( ( SpriteQuad.x < 0 ) || ( SpriteQuad.x + sprite_WIDTH > SCREEN_WIDTH ) || SDL_HasIntersection(&SpriteQuad, &obstacle) )
+        {
+            if (sound)
+                Mix_PlayChannel(-1, gSoundLife, 0);
+            // cout << "vanish" << endl;
+            LevelCave_Life_width[i] = 0;
+            LevelCave_Life_height[i] = 0;
+            LevelCave_Life_pos_x[i] = 6000;
+            //SpriteQuad.x = RESET_SPRITE_X;
+            // drawn_rect.x = SpriteQuad.x + 50;
+            
+            life++;
+        }
+    }
+
     for(int i=0;i<3;i++)
     {
-        if (checkCollision(drawn_rect, LevelCave_Quartz_rect[i]) == 1)
+        if (checkCollision(drawn_rectCave, LevelCave_Quartz_rect[i]) == 1)
         // if( ( SpriteQuad.x < 0 ) || ( SpriteQuad.x + sprite_WIDTH > SCREEN_WIDTH ) || SDL_HasIntersection(&SpriteQuad, &obstacle) )
         {
             if(sound) Mix_PlayChannel(-1, gSoundTrash, 0);
@@ -275,7 +526,7 @@ void Sprite::move(Uint32 &score, Uint32 &life)
 
     for(int i=0;i<3;i++)
     {
-        if (checkCollision(drawn_rect, LevelCave_GreenCrystal_rect[i]) == 1)
+        if (checkCollision(drawn_rectCave, LevelCave_GreenCrystal_rect[i]) == 1)
         // if( ( SpriteQuad.x < 0 ) || ( SpriteQuad.x + sprite_WIDTH > SCREEN_WIDTH ) || SDL_HasIntersection(&SpriteQuad, &obstacle) )
         {
             if(sound) Mix_PlayChannel(-1, gSoundTrash, 0);
@@ -289,7 +540,7 @@ void Sprite::move(Uint32 &score, Uint32 &life)
 
     for(int i=0;i<3;i++)
     {
-        if (checkCollision(drawn_rect, LevelCave_PinkCrystal_rect[i]) == 1)
+        if (checkCollision(drawn_rectCave, LevelCave_PinkCrystal_rect[i]) == 1)
         // if( ( SpriteQuad.x < 0 ) || ( SpriteQuad.x + sprite_WIDTH > SCREEN_WIDTH ) || SDL_HasIntersection(&SpriteQuad, &obstacle) )
         {
             if(sound) Mix_PlayChannel(-1, gSoundTrash, 0);
@@ -303,7 +554,7 @@ void Sprite::move(Uint32 &score, Uint32 &life)
 
     for(int i=0;i<2;i++)
     {
-        if (checkCollision(drawn_rect, LevelCave_Fireball_rect[i]) == 1)
+        if (checkCollision(drawn_rectCave, LevelCave_Fireball_rect[i]) == 1)
         // if( ( SpriteQuad.x < 0 ) || ( SpriteQuad.x + sprite_WIDTH > SCREEN_WIDTH ) || SDL_HasIntersection(&SpriteQuad, &obstacle) )
         {
             if(sound) Mix_PlayChannel(-1, gSoundTrash, 0);
@@ -313,6 +564,43 @@ void Sprite::move(Uint32 &score, Uint32 &life)
 
             if(life>0)
             life--;
+        }
+    }
+    for (int i = 0; i < 1; i++)
+    {
+        if (checkCollision(SpriteCaveQuad, LevelCave_Hunter_1_rect[i]) == 1)
+        {
+            if (sound)
+                Mix_PlayChannel(-1, gSoundHit, 0);
+            //SpriteQuad.x = RESET_SPRITE_X;
+            //drawn_rect.x = SpriteQuad.x + 50;
+            //SpriteQuad.y = drawn_rect.y = RESET_SPRITE_Y;
+
+            if (life > 0 )
+                life--;
+        }
+    }
+    for (int i = 0; i < 5; i++)
+    {
+        for (int j = 0; j < 1; j++)
+        {
+            if (checkCollision(LevelCave_Bullet_rect[i], LevelCave_Hunter_1_rect[j]) == 1)
+            {
+                if (sound)
+                    Mix_PlayChannel(-1, gSoundHit, 0);
+                LevelCave_Bullet_go[i] = 0;
+                LevelCave_Bullet_width[i] = 0;
+                LevelCave_Bullet_height[i] = 0;
+                LevelCave_Bullet_pos_x[i] = SpriteQuad.x + SpriteQuad.w / 2;
+                LevelCave_Bullet_rect[i].x = SpriteQuad.x + SpriteQuad.w / 2;
+                LevelCave_Bullet_pos_y[i] = SpriteQuad.y + SpriteQuad.h / 2;
+                LevelCave_Bullet_rect[i].y = SpriteQuad.y + SpriteQuad.h / 2;
+
+                LevelCave_Hunter_1_width[j] = 0;
+                LevelCave_Hunter_1_height[j] = 0;
+
+                score += 10;
+            }
         }
     }
 }

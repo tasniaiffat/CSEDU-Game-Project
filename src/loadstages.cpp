@@ -560,6 +560,9 @@ bool loadMediaLEVEL_CAVE()//this function should be done, check comments and if 
 {
     //Loading success flag
     bool success = true;
+    gSymbolLifeTexture.loadFromFile("res/Assets/SymbolLife.png");
+    gSymbolScoreTexture.loadFromFile("res/Assets/SymbolScore.png");
+
 
     gFont = TTF_OpenFont("MyFont3.ttf", 25);
     if (gFont == NULL)
@@ -610,7 +613,7 @@ bool loadMediaLEVEL_CAVE()//this function should be done, check comments and if 
     }
 
     // Load sprite texture
-    if (!gSpriteTexture.loadFromFile("res/Assets/sprite.png"))
+    if (!gSpriteCaveTexture.loadFromFile("res/Assets/sprite.png"))
     {
         printf("Failed to load sprite texture!\n");
         success = false;
@@ -618,45 +621,45 @@ bool loadMediaLEVEL_CAVE()//this function should be done, check comments and if 
     else
     {
         // Set Sprite clips
-        gspriteClip[0].x = 0;
-        gspriteClip[0].y = 0;
-        gspriteClip[0].w = 641;
-        gspriteClip[0].h = 542;
+        gspriteCaveClip[0].x = 0;
+        gspriteCaveClip[0].y = 0;
+        gspriteCaveClip[0].w = 641;
+        gspriteCaveClip[0].h = 542;
 
-        gspriteClip[1].x = 641;
-        gspriteClip[1].y = 0;
-        gspriteClip[1].w = 641;
-        gspriteClip[1].h = 542;
+        gspriteCaveClip[1].x = 641;
+        gspriteCaveClip[1].y = 0;
+        gspriteCaveClip[1].w = 641;
+        gspriteCaveClip[1].h = 542;
 
-        gspriteClip[2].x = 1282;
-        gspriteClip[2].y = 0;
-        gspriteClip[2].w = 641;
-        gspriteClip[2].h = 542;
+        gspriteCaveClip[2].x = 1282;
+        gspriteCaveClip[2].y = 0;
+        gspriteCaveClip[2].w = 641;
+        gspriteCaveClip[2].h = 542;
 
-        gspriteClip[3].x = 1923;
-        gspriteClip[3].y = 0;
-        gspriteClip[3].w = 641;
-        gspriteClip[3].h = 542;
+        gspriteCaveClip[3].x = 1923;
+        gspriteCaveClip[3].y = 0;
+        gspriteCaveClip[3].w = 641;
+        gspriteCaveClip[3].h = 542;
 
-        gspriteClip[4].x = 2564;
-        gspriteClip[4].y = 0;
-        gspriteClip[4].w = 641;
-        gspriteClip[4].h = 542;
+        gspriteCaveClip[4].x = 2564;
+        gspriteCaveClip[4].y = 0;
+        gspriteCaveClip[4].w = 641;
+        gspriteCaveClip[4].h = 542;
 
-        gspriteClip[5].x = 3205;
-        gspriteClip[5].y = 0;
-        gspriteClip[5].w = 641;
-        gspriteClip[5].h = 542;
+        gspriteCaveClip[5].x = 3205;
+        gspriteCaveClip[5].y = 0;
+        gspriteCaveClip[5].w = 641;
+        gspriteCaveClip[5].h = 542;
 
-        gspriteClip[6].x = 3846;
-        gspriteClip[6].y = 0;
-        gspriteClip[6].w = 641;
-        gspriteClip[6].h = 542;
+        gspriteCaveClip[6].x = 3846;
+        gspriteCaveClip[6].y = 0;
+        gspriteCaveClip[6].w = 641;
+        gspriteCaveClip[6].h = 542;
 
-        gspriteClip[7].x = 4487;
-        gspriteClip[7].y = 0;
-        gspriteClip[7].w = 641;
-        gspriteClip[7].h = 542;
+        gspriteCaveClip[7].x = 4487;
+        gspriteCaveClip[7].y = 0;
+        gspriteCaveClip[7].w = 641;
+        gspriteCaveClip[7].h = 542;
     }
 
     // Load music
@@ -712,7 +715,7 @@ bool loadMediaLEVEL_CAVE()//this function should be done, check comments and if 
     }
 
     //bullet
-    if (!gLevelOne_BulletTexture.loadFromFile("res/Assets/LevelOne_Bullet.png"))
+    if (!gLevelCave_BulletTexture.loadFromFile("res/Assets/LevelOne_Bullet.png"))
     {
         printf("Failed to load LevelOne_Bullet texture!\n");
         success = false;
@@ -728,14 +731,14 @@ bool loadMediaLEVEL_CAVE()//this function should be done, check comments and if 
     //did not do tiger, lion, clouds
 
     //lifetexture
-    if (!gLevelOne_LifeTexture.loadFromFile("res/Assets/LevelCave_Life.png"))
+    if (!gLevelCave_LifeTexture.loadFromFile("res/Assets/LevelCave_Life.png"))
     {
-        printf("Failed to load LevelOne_Hunter_ texture!\n");
+        printf("Failed to load LevelCave_Hunter_ texture!\n");
         success = false;
     }
 
     //shooting sprite
-    if (!gShootingSpriteTexture.loadFromFile("res/Assets/shooting_sprite.png"))
+    if (!gShootingSpriteCaveTexture.loadFromFile("res/Assets/shooting_sprite.png"))
     {
         printf("Failed to load shooting_ texture!\n");
         success = false;

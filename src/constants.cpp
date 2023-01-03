@@ -34,6 +34,8 @@ int flag_music = 0;
 // level one global variable initialization
 SDL_Rect drawn_rect;                  // level one
 SDL_Rect LevelOne_Hunter__drawn_rect; // level one
+SDL_Rect drawn_rectCave; 
+SDL_Rect LevelCave_Hunter__drawn_rect;
 
 // Set rendering space and render to screen
 SDL_Rect SpriteQuad = {100, 579, 213, 180}; // level one
@@ -42,6 +44,7 @@ int RESET_SPRITE_Y = 201;
 SDL_Rect CarQuad = {100, 300, 300, 150}; // level two
 int RESET_CAR_X = 200;
 int RESET_CAR_Y = 570;
+SDL_Rect SpriteCaveQuad = {100, 579, 213, 180};
 int flag = 1;
 int base = 579;
 
@@ -201,6 +204,19 @@ int LevelTwo_Fuel_height[2] = {151, 151};
 
 //cave level
 
+// LevelCave_Bullets
+int LevelCave_Bullet_pos_x[5] = {SpriteCaveQuad.x + SpriteCaveQuad.w, SpriteCaveQuad.x + SpriteCaveQuad.w, SpriteCaveQuad.x + SpriteCaveQuad.w, SpriteCaveQuad.x + SpriteCaveQuad.w, SpriteCaveQuad.x + SpriteCaveQuad.w};
+int LevelCave_Bullet_pos_y[5] = {SpriteCaveQuad.y + SpriteCaveQuad.h / 2, SpriteCaveQuad.y + SpriteCaveQuad.h / 2, SpriteCaveQuad.y + SpriteCaveQuad.h / 2, SpriteCaveQuad.y + SpriteCaveQuad.h / 2, SpriteCaveQuad.y + SpriteCaveQuad.h / 2};
+int LevelCave_Bullet_width[5] = {0, 0, 0, 0, 0};
+int LevelCave_Bullet_height[5] = {0, 0, 0, 0, 0};
+
+
+// LevelCave_Life
+int LevelCave_Life_pos_x[1] = {1300};
+int LevelCave_Life_pos_y[1] = {100};
+int LevelCave_Life_width[1] = {100};
+int LevelCave_Life_height[1] = {100};
+
 //Quartz
 int LevelCave_Quartz_pos_x[3]={600,800,1000};
 int LevelCave_Quartz_pos_y[3]={350,180,200};
@@ -233,18 +249,24 @@ int LevelCave_Fireball_height[2]={47,47};//382
 
 // The velocity of the sprite
 int sprite_VelX, sprite_VelY;
+// The velocity of the sprite
+int spriteCave_VelX, spriteCave_VelY;
 
 // for LevelOne_Bullet
 int LevelOne_Bullet_go[5] = {0, 0, 0, 0, 0};
+int LevelCave_Bullet_go[5] = {0, 0, 0, 0, 0};
 
 // Walking animation
 const int WALKING_ANIMATION_FRAMES = 8;
+const int WALKING_ANIMATION_FRAMESCAVE = 8;
 SDL_Rect gspriteClip[WALKING_ANIMATION_FRAMES];
+SDL_Rect gspriteCaveClip[WALKING_ANIMATION_FRAMESCAVE];
 
 // level one globally declaring the rectangle where the obstacle will be rendered
 SDL_Rect SymbolScore_rect;
 SDL_Rect SymbolLife_rect;
 SDL_Rect ShootingSprite_rect;
+SDL_Rect ShootingSpriteCave_rect;
 SDL_Rect LevelOne_FloatingPlatform_rect[3];
 SDL_Rect LevelOne_Battery_rect[6];
 SDL_Rect LevelOne_Waste_Bag_rect[6];
@@ -253,10 +275,12 @@ SDL_Rect LevelOne_Birds_1_rect[5];
 SDL_Rect LevelOne_Barrier_1_rect[1];
 SDL_Rect LevelOne_Barrier_2_rect[1];
 SDL_Rect LevelOne_Bullet_rect[5];
+SDL_Rect LevelCave_Bullet_rect[5];
 SDL_Rect LevelOne_Hunter_1_rect[5];
 SDL_Rect LevelOne_Lion_rect[1];
 SDL_Rect LevelOne_Tiger_rect[1];
 SDL_Rect LevelOne_Life_rect[1];
+SDL_Rect LevelCave_Life_rect[1];
 SDL_Rect LevelOne_Clouds1_rect[1];
 SDL_Rect LevelOne_Clouds2_rect[1];
 SDL_Rect LevelOne_Clouds3_rect[1];
@@ -279,4 +303,5 @@ SDL_Rect LevelCave_Fireball_rect[2];
 
 // current sprite clip
 SDL_Rect *currentClip;
+SDL_Rect *currentClipCave;
 

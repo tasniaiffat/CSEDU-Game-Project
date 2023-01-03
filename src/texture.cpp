@@ -17,6 +17,7 @@ LTexture gBGScoreboardTexture;
 // image textures of level one
 LTexture gBGLevelOne;
 LTexture gSpriteTexture;
+LTexture gSpriteCaveTexture;
 LTexture gLevelOne_FloatingPlatformTexture;
 LTexture gLevelOne_BatteryTexture;
 LTexture gRunning_platformTexture;
@@ -25,11 +26,14 @@ LTexture gLevelOne_CanTexture;
 LTexture gFlyingLevelOne_Birds_1Texture;
 LTexture gFlyingLevelOne_Birds_2Texture;
 LTexture gShootingSpriteTexture;
+LTexture gShootingSpriteCaveTexture;
 LTexture gLevelOne_BulletTexture;
+LTexture gLevelCave_BulletTexture;
 LTexture gLevelOne_Hunter_1Texture;
 LTexture gLevelOne_LionTexture;
 LTexture gLevelOne_TigerTexture;
 LTexture gLevelOne_LifeTexture;
+LTexture gLevelCave_LifeTexture;
 LTexture gLevelOne_Clouds1Texture;
 LTexture gLevelOne_Clouds2Texture;
 LTexture gLevelOne_Clouds3Texture;
@@ -171,6 +175,8 @@ bool LTexture::loadFromFile(std::string path)
             // objects of level one
             gSpriteTexture.mHeight = 180;
             gSpriteTexture.mWidth = 213;
+            gSpriteCaveTexture.mHeight = 180;
+            gSpriteCaveTexture.mWidth = 213;
             // gShootingSpriteTexture.mWidth = 213;
             // gShootingSpriteTexture.mHeight = 180;
             gLevelOne_FloatingPlatformTexture.mHeight = 156;
@@ -195,6 +201,8 @@ bool LTexture::loadFromFile(std::string path)
             gLevelOne_TigerTexture.mHeight = 164;
             gLevelOne_LifeTexture.mWidth = 100;
             gLevelOne_LifeTexture.mHeight = 100;
+            gLevelCave_LifeTexture.mWidth = 100;
+            gLevelCave_LifeTexture.mHeight = 100;
             gLevelOne_Clouds1Texture.mWidth = 250;
             gLevelOne_Clouds1Texture.mHeight = 100;
             gLevelOne_Clouds2Texture.mWidth = 250;
@@ -346,6 +354,19 @@ void LTexture::render(int x, int y, int check, SDL_Rect *clip, double angle, SDL
         }
     }
 
+    else if (check == 33) // if the texture is of LevelOne_Bullet
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            LevelCave_Bullet_rect[i].x = LevelCave_Bullet_pos_x[i];
+            LevelCave_Bullet_rect[i].y = LevelCave_Bullet_pos_y[i];
+            LevelCave_Bullet_rect[i].w = LevelCave_Bullet_width[i];
+            LevelCave_Bullet_rect[i].h = LevelCave_Bullet_height[i];
+
+            SDL_RenderCopyEx(gRenderer, mTexture, clip, &LevelCave_Bullet_rect[i], angle, center, flip);
+        }
+    }
+
     else if (check == 7) // if the texture is of LevelOne_Bullet
     {
         for (int i = 0; i < 2; i++)
@@ -411,6 +432,15 @@ void LTexture::render(int x, int y, int check, SDL_Rect *clip, double angle, SDL
         SDL_RenderCopyEx(gRenderer, mTexture, clip, &LevelOne_Life_rect[0], angle, center, flip);
     }
 
+    else if (check == 32)
+    {
+        LevelCave_Life_rect[0].x = LevelCave_Life_pos_x[0];
+        LevelCave_Life_rect[0].y = LevelCave_Life_pos_y[0];
+        LevelCave_Life_rect[0].w = LevelCave_Life_width[0];
+        LevelCave_Life_rect[0].h = LevelCave_Life_height[0];
+        SDL_RenderCopyEx(gRenderer, mTexture, clip, &LevelCave_Life_rect[0], angle, center, flip);
+    }
+
     else if (check == 13)
     {
         LevelOne_Clouds1_rect[0].x = LevelOne_Clouds1_pos_x[0];
@@ -452,6 +482,11 @@ void LTexture::render(int x, int y, int check, SDL_Rect *clip, double angle, SDL
     else if (check == 17)
     {
         SDL_RenderCopyEx(gRenderer, mTexture, clip, &ShootingSprite_rect, angle, center, flip);
+    }
+
+    else if (check == 35)
+    {
+        SDL_RenderCopyEx(gRenderer, mTexture, clip, &ShootingSpriteCave_rect, angle, center, flip);
     }
 
     else if(check == 19)
@@ -625,7 +660,13 @@ void LTexture ::RenderSprite(int x, int y, SDL_Rect *clip)
     SDL_RenderCopy(gRenderer, mTexture, clip, &SpriteQuad);
 }
 
+
 void LTexture ::RenderCar(int x, int y, SDL_Rect *clip)
 {
     SDL_RenderCopy(gRenderer, mTexture, clip, &CarQuad);
+}
+
+void LTexture ::RenderSpriteCave(int x, int y, SDL_Rect *clip)
+{
+    SDL_RenderCopy(gRenderer, mTexture, clip, &SpriteCaveQuad);
 }

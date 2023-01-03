@@ -39,6 +39,8 @@ extern Uint32 life_levelCave;
 // level one global variable initialization
 extern SDL_Rect drawn_rect;                  // level one
 extern SDL_Rect LevelOne_Hunter__drawn_rect; // level one
+extern SDL_Rect drawn_rectCave; 
+extern SDL_Rect LevelCave_Hunter__drawn_rect;
 
 // Set rendering space and render to screen
 extern SDL_Rect SpriteQuad; // level one
@@ -47,6 +49,7 @@ extern int RESET_SPRITE_Y;
 extern SDL_Rect CarQuad; // level two
 extern int RESET_CAR_X;
 extern int RESET_CAR_Y;
+extern SDL_Rect SpriteCaveQuad;//level three
 
 extern int flag;
 extern int base;
@@ -207,6 +210,18 @@ extern int LevelTwo_Fuel_height[2];
 
 //cave level
 
+// LevelCave_Bullets
+extern int LevelCave_Bullet_pos_x[5];
+extern int LevelCave_Bullet_pos_y[5];
+extern int LevelCave_Bullet_width[5];
+extern int LevelCave_Bullet_height[5];
+
+// LevelCave_Life
+extern int LevelCave_Life_pos_x[1];
+extern int LevelCave_Life_pos_y[1];
+extern int LevelCave_Life_width[1];
+extern int LevelCave_Life_height[1];
+
 //Quartz
 extern int LevelCave_Quartz_pos_x[3];
 extern int LevelCave_Quartz_pos_y[3];
@@ -239,19 +254,26 @@ extern int LevelCave_Hunter_1_height[1];
 
 // The velocity of the sprite
 extern int sprite_VelX, sprite_VelY;
+// The velocity of the sprite
+extern int spriteCave_VelX, spriteCave_VelY;
 
 // for LevelOne_Bullet
 extern int LevelOne_Bullet_go[5];
+extern int LevelCave_Bullet_go[5];
 
 // Walking animation
 extern const int WALKING_ANIMATION_FRAMES;
 extern SDL_Rect gspriteClip[8];
+
+extern const int WALKING_ANIMATION_FRAMESCAVE;
+extern SDL_Rect gspriteCaveClip[8];
 
 extern SDL_Rect SymbolScore_rect;
 extern SDL_Rect SymbolLife_rect;
 
 // level one globally declaring the rectangle where the obstacle will be rendered
 extern SDL_Rect ShootingSprite_rect;
+extern SDL_Rect ShootingSpriteCave_rect;
 extern SDL_Rect LevelOne_FloatingPlatform_rect[3];
 extern SDL_Rect LevelOne_Battery_rect[6];
 extern SDL_Rect LevelOne_Waste_Bag_rect[6];
@@ -260,10 +282,12 @@ extern SDL_Rect LevelOne_Birds_1_rect[5];
 extern SDL_Rect LevelOne_Barrier_1_rect[1];
 extern SDL_Rect LevelOne_Barrier_2_rect[1];
 extern SDL_Rect LevelOne_Bullet_rect[5];
+extern SDL_Rect LevelCave_Bullet_rect[5];
 extern SDL_Rect LevelOne_Hunter_1_rect[5];
 extern SDL_Rect LevelOne_Lion_rect[1];
 extern SDL_Rect LevelOne_Tiger_rect[1];
 extern SDL_Rect LevelOne_Life_rect[1];
+extern SDL_Rect LevelCave_Life_rect[1];
 extern SDL_Rect LevelOne_Clouds1_rect[1];
 extern SDL_Rect LevelOne_Clouds2_rect[1];
 extern SDL_Rect LevelOne_Clouds3_rect[1];
@@ -291,5 +315,6 @@ extern SDL_Rect LevelCave_Fireball_rect[2];
 
 // current sprite clip
 extern SDL_Rect *currentClip;
+extern SDL_Rect *currentClipCave;
 
 #endif
