@@ -14,3 +14,5 @@ Download the game and install SDL/SDL2 to play the game.
 Command to start the game: make game
 
 Youtube: https://youtu.be/qKhfkv5fLRU 
+
+For details and screenshots: https://docs.google.com/document/d/1nBX5C-89FAZNG6FNeR8l050c3Bo90C6Bxfpt1_W85p8/edit?usp=sharing 
